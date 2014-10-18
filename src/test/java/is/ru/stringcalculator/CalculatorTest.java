@@ -35,6 +35,16 @@ public class CalculatorTest {
 
 	@Test
 	public void testDelimiter() {
-	assertEquals(6, Calculator.add("//;\n1;2;3"));
+	assertEquals(8, Calculator.add("//;\n1;2;3;2"));
+	}
+	
+	@Test
+	public void testNoNegAllowed(){
+		try { 
+			Calculator.add("-1,2"); 
+		}
+		catch(IllegalArgumentException ex){
+			assertEquals("Negatives not allowed -1", ex.getMessage());
+		}
 	}
 }  

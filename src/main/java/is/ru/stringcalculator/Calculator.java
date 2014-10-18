@@ -7,17 +7,22 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else if(text.contains("//")) {
-			String del = Character.toString(text.charAt(2));
-			text = text.substring(4);
-			text = text.replace( del , ",");
-			text = text.replace("\n" , ",");
-			String[] num = splitUp(text);
-			return sum(num);
-		}
-		else if(text.contains(",")) {
+		else if(text.length() > 1){
+
+
+			if(text.contains("//")) {
+				text = delimiter(text);
+			}
 			text = text.replace("\n", ",");
 			String[] num = splitUp(text);	
+			//illegal arg
+			for(String n: num) {
+				if (toInt(n) < 0) {
+					String s = "Negatives not allowed " + n;	
+					throw new IllegalArgumentException(s);
+				}
+				
+			}
 			return sum(num);
 		}
 		else
@@ -38,6 +43,13 @@ public class Calculator {
 			summa += toInt(num);
 		}
 		return summa;
+	}
+
+	private static String delimiter(String text) {
+		String del = Character.toString(text.charAt(2));
+		text = text.substring(4);
+		text = text.replace( del , ",");
+		return text;
 	}
 }
 
