@@ -7,7 +7,15 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		if(text.contains(",") || text.contains("\n")) {
+		else if(text.contains("//")) {
+			String del = Character.toString(text.charAt(2));
+			text = text.substring(4);
+			text = text.replace( del , ",");
+			text = text.replace("\n" , ",");
+			String[] num = splitUp(text);
+			return sum(num);
+		}
+		else if(text.contains(",")) {
 			text = text.replace("\n", ",");
 			String[] num = splitUp(text);	
 			return sum(num);
