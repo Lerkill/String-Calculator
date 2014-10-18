@@ -6,9 +6,8 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else {
+		else 
 			return 1;
-		}
 		
 	}
 
