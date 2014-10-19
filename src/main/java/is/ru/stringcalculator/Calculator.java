@@ -15,14 +15,10 @@ public class Calculator {
 			}
 			text = text.replace("\n", ",");
 			String[] num = splitUp(text);	
-			//illegal arg
-			for(String n: num) {
-				if (toInt(n) < 0) {
-					String s = "Negatives not allowed " + n;	
-					throw new IllegalArgumentException(s);
-				}
-				
-			}
+			
+			//check if any neq numbers, if so, throw exception
+			testValid(num); 
+			
 			return sum(num);
 		}
 		else
@@ -50,6 +46,19 @@ public class Calculator {
 		text = text.substring(4);
 		text = text.replace( del , ",");
 		return text;
+	}
+
+	private static void testValid(String[] num) {
+		boolean found = false;
+		String message = "Negatives not allowed:";
+		for(String n: num) {
+			if (toInt(n) < 0) {
+				message +=" " + n;	
+				found = true;
+			}
+		}
+		if(found)
+			throw new IllegalArgumentException(message);	
 	}
 }
 
