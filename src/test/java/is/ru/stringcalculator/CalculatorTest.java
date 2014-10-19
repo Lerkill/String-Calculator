@@ -72,4 +72,10 @@ public class CalculatorTest {
 		assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
 	}
 
+	@Test
+	public void testDelimsOfAnyLength() {
+		assertEquals(21, Calculator.add("//[**][%][$$$]\n1**2%3$$$4,5\n6"));
+	}
+
+
 }  
