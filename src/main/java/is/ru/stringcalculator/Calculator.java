@@ -2,29 +2,24 @@ package is.ru.stringcalculator;
 import java.util.ArrayList;
 public class Calculator {
 
-	public static int add(String text){
-				
+	public static int add(String text){		
 		if(text.equals("")){
 			return 0;
 		}
 		else if(text.length() > 1){
-
-
 			if(text.contains("//")) {
 				text = delimiter(text);
 			}
 			text = text.replace("\n", ",");
-			String[] num = splitUp(text);	
-			
+			String[] num = splitUp(text);			
 			//check if any neq numbers, if so, throw exception
-			testValid(num); 
-			
+			testValid(num); 			
 			return sum(num);
 		}
 		else
-			return toInt(text); 
-		
+			return toInt(text); //if only 1 number. 		
 	}
+
 	private static int toInt(String n) {
 		return Integer.parseInt(n);
 	}
@@ -47,17 +42,14 @@ public class Calculator {
 	private static String delimiter(String text) {
 		String del;
 		ArrayList<String> delims = new ArrayList<String>();
-		//delim of any length.
+		//delim of any length and type
 		if(text.contains("[") && text.contains("]")) {
-			
-			for(int i = 0; i < text.indexOf('\n') + 1; i++) {
+			for(int i = 0; i < text.indexOf('\n') ; i++) {
 				if(text.charAt(i) == '['){
 					int stop = text.indexOf(']', i);	
 					del = text.substring(i+1, stop);
-					System.out.println("delfirst: " + del);
 					delims.add(del);
-				}
-				
+				}			
 			}			
 		}
 		else {
@@ -65,13 +57,10 @@ public class Calculator {
 			delims.add(del);
 		}
 		int textStart = text.indexOf('\n') + 1;
-		System.out.println("textbefore: " + text);
 		text = text.substring(textStart);
-		
+		//replace delimiter with ','
 		for(String d: delims) {
-			System.out.println("d: " + d);
 			text = text.replace( d , ",");
-			System.out.println("text: " + text);	
 		}	
 		return text;
 	}
