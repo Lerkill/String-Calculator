@@ -45,8 +45,19 @@ public class Calculator {
 	}
 
 	private static String delimiter(String text) {
-		String del = Character.toString(text.charAt(2));
-		text = text.substring(4);
+		String del;
+		//delim of any length.
+		if(text.contains("[") && text.contains("]")) {
+			int start = text.indexOf('[');
+			int stop = text.indexOf(']');
+			
+			del = text.substring(start + 1, stop);
+		}
+		else {
+			del = Character.toString(text.charAt(2));
+		}
+		int textStart = text.indexOf('\n') + 1;
+		text = text.substring(textStart);
 		text = text.replace( del , ",");
 		return text;
 	}

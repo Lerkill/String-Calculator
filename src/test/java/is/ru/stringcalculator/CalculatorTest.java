@@ -61,4 +61,10 @@ public class CalculatorTest {
 	public void testLargerThanThou() {
 		assertEquals(2, Calculator.add("1001,2"));
 	}
+
+	@Test
+	public void testMultyDelims() {
+		assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+	}
+
 }  
