@@ -35,7 +35,7 @@ public class CalculatorTest {
 
 	@Test
 	public void testDelimiter() {
-		assertEquals(8, Calculator.add("//;\n1;2;3;2"));
+		assertEquals(6, Calculator.add("//;\n1;2;3"));
 	}
 	
 	@Test
@@ -65,6 +65,11 @@ public class CalculatorTest {
 	@Test
 	public void testMultyDelims() {
 		assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+	}
+
+	@Test
+	public void testMultyDelims2() {
+		assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
 	}
 
 }  

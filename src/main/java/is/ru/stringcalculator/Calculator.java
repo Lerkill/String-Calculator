@@ -1,5 +1,5 @@
 package is.ru.stringcalculator;
-
+import java.util.ArrayList;
 public class Calculator {
 
 	public static int add(String text){
@@ -46,19 +46,33 @@ public class Calculator {
 
 	private static String delimiter(String text) {
 		String del;
+		ArrayList<String> delims = new ArrayList<String>();
 		//delim of any length.
 		if(text.contains("[") && text.contains("]")) {
-			int start = text.indexOf('[');
-			int stop = text.indexOf(']');
 			
-			del = text.substring(start + 1, stop);
+			for(int i = 0; i < text.indexOf('\n') + 1; i++) {
+				if(text.charAt(i) == '['){
+					int stop = text.indexOf(']', i);	
+					del = text.substring(i+1, stop);
+					System.out.println("delfirst: " + del);
+					delims.add(del);
+				}
+				
+			}			
 		}
 		else {
 			del = Character.toString(text.charAt(2));
+			delims.add(del);
 		}
 		int textStart = text.indexOf('\n') + 1;
+		System.out.println("textbefore: " + text);
 		text = text.substring(textStart);
-		text = text.replace( del , ",");
+		
+		for(String d: delims) {
+			System.out.println("d: " + d);
+			text = text.replace( d , ",");
+			System.out.println("text: " + text);	
+		}	
 		return text;
 	}
 
