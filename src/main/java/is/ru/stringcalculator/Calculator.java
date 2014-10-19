@@ -36,6 +36,9 @@ public class Calculator {
 	private static int sum(String[] n) {
 		int summa = 0;
 		for(String num : n) {
+			if(toInt(num) > 1000) { //invalid if number is larger than 1000
+				continue;
+			}
 			summa += toInt(num);
 		}
 		return summa;
@@ -52,7 +55,7 @@ public class Calculator {
 		boolean found = false;
 		String message = "Negatives not allowed:";
 		for(String n: num) {
-			if (toInt(n) < 0) {
+			if (toInt(n) < 0) { //check neq
 				message +=" " + n;	
 				found = true;
 			}

@@ -35,7 +35,7 @@ public class CalculatorTest {
 
 	@Test
 	public void testDelimiter() {
-	assertEquals(8, Calculator.add("//;\n1;2;3;2"));
+		assertEquals(8, Calculator.add("//;\n1;2;3;2"));
 	}
 	
 	@Test
@@ -55,5 +55,10 @@ public class CalculatorTest {
 		catch(IllegalArgumentException ex){
 			assertEquals("Negatives not allowed: -4 -5", ex.getMessage());
 		}
+	}
+
+	@Test
+	public void testLargerThanThou() {
+		assertEquals(2, Calculator.add("1001,2"));
 	}
 }  
